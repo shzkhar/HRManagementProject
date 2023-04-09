@@ -21,8 +21,8 @@ public class AdminAuthenticationController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    String email = request.getParameter("email");
 	    String password=  request.getParameter("password");
+	   
 	    
-	    AdminBean adminBean = new AdminBean();
 	    boolean iserror=false;
 	    if(email==null || email.trim().length()==0)
 	    {
@@ -38,7 +38,7 @@ public class AdminAuthenticationController extends HttpServlet {
 		    	request.setAttribute("email1", "Enter Valid Email ");	
 	    	}
 	    	else {
-	    		    adminBean.setEmail(email);
+	    		   
 	    			request.setAttribute("emailvalue", email);
 	    		
 			}
@@ -59,7 +59,7 @@ public class AdminAuthenticationController extends HttpServlet {
 	    		request.setAttribute("password1", "Enter Valid Password");
 	    	}
 	    	else {
-	    	    adminBean.setPassword(password);
+	    	   
 				request.setAttribute("passwordvalue", password);
 			}
 	    	
@@ -68,21 +68,23 @@ public class AdminAuthenticationController extends HttpServlet {
 	    RequestDispatcher rd;
 	    if(iserror)
 	    {
-	    	
 	    	rd = request.getRequestDispatcher("AdminLogin.jsp");
 	    }
 	    else {
 	    	AdminDao adminDao = new AdminDao();
-	    	boolean con = adminDao.authenticate(email,password);
-           if(con==true)
-           {
-        	   rd = request.getRequestDispatcher("AddHr.jsp");
+	    	
+	    	AdminBean adminBean = adminDao.authenticate(email,password);
+         
+	    	if(adminBean==null)
+           {  
+        	   rd = request.getRequestDispatcher("AdminLogin.jsp");
            }
            else {
-        	 
-			rd = request.getRequestDispatcher("AdminLogin.jsp");
+			 request.setAttribute("adminBean", adminBean);
+         	 rd = request.getRequestDispatcher("AddHr.jsp");
 		}
 		}
+	    rd.forward(request, response);
 	}
 
 }

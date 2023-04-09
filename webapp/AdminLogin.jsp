@@ -18,10 +18,10 @@ String email = (String)request.getAttribute("email1");
 String password =(String) request.getAttribute("password1");
 %>
      <form action="AdminAuthenticationController" method="post">
-           Enter Email :- <input type="text" name="email" value="${emailvalue}"/> <br><br>
-           <span class="color"><%= email==null?"":email%></span>
-        Enter Password :-<input type="text" name="password" value="${passwordvalue}" /><br><br>
-          <span class="color"><%=password==null?"":password %></span>
+           Enter Email :- <input type="text" name="email" value="${emailvalue}"/> 
+           <span class="color"><%= email==null?"":email%></span><br><br>
+        Enter Password :-<input type="text" name="password" value="${passwordvalue}" />
+          <span class="color"><%=password==null?"":password %></span><br><br>
         
           <input type="submit" value="Login"/>
      </form>

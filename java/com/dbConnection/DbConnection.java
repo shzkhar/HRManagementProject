@@ -12,7 +12,7 @@ public class DbConnection {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			
-			 con = DriverManager.getConnection("jdbc:sqlserver://localhost:50996;trustServerCertificate=true;","sa", "root");
+			 con = DriverManager.getConnection("jdbc:sqlserver://localhost:50996; Database=ResourcesManagement; trustServerCertificate=true;","sa", "root");
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
