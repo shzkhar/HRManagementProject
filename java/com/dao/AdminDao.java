@@ -37,5 +37,25 @@ public class AdminDao {
 		return adminBean;
 	}
 
+	public int addHr(String hrname, String hremail, String hrpassword, String hrmobno) {
+		
+		Connection con = DbConnection.getConnection();
+		int rowaffected=0;
+		try {
+			PreparedStatement ps = con.prepareStatement("insert into Hr values(?,?,?,?)");
+			
+			ps.setString(1, hrname);
+			ps.setString(2,hremail);
+			ps.setString(3, hrpassword);
+			ps.setString(4, hrmobno);
+			
+			 rowaffected = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rowaffected;
+	}
+
 	
 }

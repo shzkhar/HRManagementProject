@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="com.bean.AdminBean" %>
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +8,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%AdminBean adminBean = (AdminBean)request.getAttribute("adminBean"); %>
-<h3 align="right">
-<%=adminBean.getEmail()%>
- <%=adminBean.getPassword() %>  
-</h3>
-   Hr Added
+
+  <%String hrname = (String)request.getAttribute("hrname"); 
+  String hremail = (String)request.getAttribute("hremail");
+  String hrpassword = (String)request.getAttribute("hrpassword");
+  String hrmobno = (String)request.getAttribute("hrmobno");
+  %>
+       <form action="HrRegistrationController" method="post">
+        Enter Hr Name :- <input type="text" name="hrname" value="${hrnamevalue}"/> 
+           <span class="color"><%= hrname==null?"":hrname%></span><br><br>
+        Enter Hr Emial :-<input type="text" name="hremail" value="${hremailvalue}" />
+          <span class="color"><%=hremail==null?"":hremail %></span><br><br>
+           Enter Hr Password :- <input type="text" name="hrpassword" value="${hrpasswordvalue}"/> 
+           <span class="color"><%= hrpassword==null?"":hrpassword%></span><br><br>
+        Enter Hr Mobno :-<input type="text" name="hrmobno" value="${hrmobnovalue}" />
+          <span class="color"><%=hrmobno==null?"":hrmobno %></span><br><br>
+        
+          <input type="submit" value="Login"/>
+     </form>
+         
 </body>
 </html>

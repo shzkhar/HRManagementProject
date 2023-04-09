@@ -1,6 +1,7 @@
  package com.Controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bean.AdminBean;
 import com.dao.AdminDao;
+import com.filter.Validation;
 
 /**
  * Servlet implementation class AdminAuthenticationController
@@ -24,46 +26,38 @@ public class AdminAuthenticationController extends HttpServlet {
 	   
 	    
 	    boolean iserror=false;
-	    if(email==null || email.trim().length()==0)
+	    if(Validation.isEmpty(email))
 	    {
 	    	iserror=true;
 	    	request.setAttribute("email1", "Email Can't Be Empty");
 	    }
-	    else 
+	    else if(Validation.isEmailAlpha(email))
 	    {
-	    	String alpha = "^(.+)@(\\S+)$";
-	    	if(email.matches(alpha)==false)
-	    	{
-	    		iserror=true;
-		    	request.setAttribute("email1", "Enter Valid Email ");	
-	    	}
-	    	else {
-	    		   
-	    			request.setAttribute("emailvalue", email);
-	    		
-			}
-	    	
+	    	iserror=true;
+	    	request.setAttribute("email1", "Enter Valid Email ");
 	    }
-	    
-	    if(password==null || password.trim().length()==0)
+	    else {
+ 		   
+			request.setAttribute("emailvalue", email);
+		
+	         }
+	    if(Validation.isEmpty(password))
 	    {
 	    	iserror=true;
 	    	request.setAttribute("password1", "Password Can't Be Empty");
 	    }
-	    else
+	    else if(Validation.isPasswordalpha(password))
 	    {
-	    	String alpha = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#*$%^&+=])(?=\\S+$).{8,}$";
-	    	if(password.matches(alpha)==false)
-	    	{
-	    		iserror=true;
-	    		request.setAttribute("password1", "Enter Valid Password");
-	    	}
-	    	else {
+	    	iserror=true;
+    		request.setAttribute("password1", "Enter Valid Password");	
+	    }
+	   	else 
+	   	{
 	    	   
 				request.setAttribute("passwordvalue", password);
-			}
+		}
 	    	
-	    }
+	  
 	    
 	    RequestDispatcher rd;
 	    if(iserror)
@@ -81,7 +75,7 @@ public class AdminAuthenticationController extends HttpServlet {
            }
            else {
 			 request.setAttribute("adminBean", adminBean);
-         	 rd = request.getRequestDispatcher("AddHr.jsp");
+         	 rd = request.getRequestDispatcher("AdminDashBoard.jsp");
 		}
 		}
 	    rd.forward(request, response);
