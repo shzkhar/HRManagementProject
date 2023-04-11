@@ -41,7 +41,7 @@ public class HrRegistrationController extends HttpServlet {
 			request.setAttribute("hrname", "Enter Valid Name");
 		}
 		else {
-			request.setAttribute("henamevalue", hrname);
+			request.setAttribute("hrnamevalue", hrname);
 		}
 		
 		//Validation For Email
@@ -94,6 +94,10 @@ public class HrRegistrationController extends HttpServlet {
 			 iserror=true;
 			 request.setAttribute("hrmobno", "Enter Valid MobNo");	
 		 }
+		 else {
+			request.setAttribute("hrmobnovalue", hrmobno);
+		}
+		 
 		 
 		 RequestDispatcher rd=null;
 		 if(iserror)
@@ -102,19 +106,14 @@ public class HrRegistrationController extends HttpServlet {
 		 }
 		 else {
 			AdminDao adminDao = new AdminDao();
-			int rowaffected = adminDao.addHr(hrname,hremail,hrpassword,hrmobno);
+			adminDao.addHr(hrname,hremail,hrpassword,hrmobno);
 			
-			if(rowaffected>0)
-			{
-				//////////////////////////////////"Hr Addes Successfully"
-				rd=request.getRequestDispatcher("AdminDashBoard.jsp");
+		    rd=request.getRequestDispatcher("AdminDashBoard.jsp");
 			}
-			else {
-				rd=request.getRequestDispatcher("AddHr.jsp");
-			}
+			
 			rd.forward(request, response);
 		}
 
-	}
-
 }
+
+

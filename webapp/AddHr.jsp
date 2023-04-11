@@ -5,9 +5,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Hr</title>
+<style>
+.color{
+   color:red;
+}
+</style>
 </head>
-<body>
+<body align="center">
 
   <%String hrname = (String)request.getAttribute("hrname"); 
   String hremail = (String)request.getAttribute("hremail");
@@ -19,7 +24,7 @@
            <span class="color"><%= hrname==null?"":hrname%></span><br><br>
         Enter Hr Emial :-<input type="text" name="hremail" value="${hremailvalue}" />
           <span class="color"><%=hremail==null?"":hremail %></span><br><br>
-           Enter Hr Password :- <input type="text" name="hrpassword" value="${hrpasswordvalue}"/> 
+           Enter Hr Password :- <input type="password" name="hrpassword" value="${hrpasswordvalue}"/> 
            <span class="color"><%= hrpassword==null?"":hrpassword%></span><br><br>
         Enter Hr Mobno :-<input type="text" name="hrmobno" value="${hrmobnovalue}" />
           <span class="color"><%=hrmobno==null?"":hrmobno %></span><br><br>

@@ -59,7 +59,7 @@ public class AdminAuthenticationController extends HttpServlet {
 	    	
 	  
 	    
-	    RequestDispatcher rd;
+	    RequestDispatcher rd=null;
 	    if(iserror)
 	    {
 	    	rd = request.getRequestDispatcher("AdminLogin.jsp");
