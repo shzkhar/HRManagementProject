@@ -71,6 +71,7 @@ public class AdminAuthenticationController extends HttpServlet {
          
 	    	if(adminBean==null)
            {  
+	    		request.setAttribute("error",  "Please Enter Valid Credentials");
         	   rd = request.getRequestDispatcher("AdminLogin.jsp");
            }
            else {

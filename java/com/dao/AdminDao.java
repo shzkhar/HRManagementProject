@@ -162,15 +162,47 @@ public class AdminDao {
 			{
 				hrBean = new HrBean();
 				hrBean.setId(rs.getInt("HrId"));
-				hrBean.setId(rs.getInt("HrName"));
-				hrBean.setId(rs.getInt("HrEmail"));
-				hrBean.setId(rs.getInt("HrPass"));
-				hrBean.setId(rs.getInt("HrMobno"));
+				hrBean.setHrname(rs.getString("HrName"));
+				hrBean.setHremail(rs.getString("HrEmail"));
+				hrBean.setHrpassword(rs.getString("HrPass"));
+				hrBean.setHrmobno(rs.getString("HrMobno"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return hrBean;
+	}
+
+	public ArrayList<HrBean> search(String hrname) {
+		
+		HrBean hrBean = null;
+		ArrayList<HrBean> hrBeansAL = new ArrayList<HrBean>();
+		try {
+			Connection con = DbConnection.getConnection();
+			
+			PreparedStatement ps = con.prepareStatement("select * from Hr where HrName like ?");
+			
+			ps.setString(1, hrname+"%");
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next())
+			{
+				hrBean = new HrBean();
+				hrBean.setId(rs.getInt("HrId"));
+				hrBean.setHrname(rs.getString("HrName"));
+				hrBean.setHremail(rs.getString("HrEmail"));
+				hrBean.setHrpassword(rs.getString("HrPass"));
+				hrBean.setHrmobno(rs.getString("HrMobno"));
+				
+				hrBeansAL.add(hrBean);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return hrBeansAL;
+		
 	}
 }
