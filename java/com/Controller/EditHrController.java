@@ -18,9 +18,9 @@ import com.dao.AdminDao;
 public class EditHrController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = getInitParameter("id");
+		String hrid = request.getParameter("id");
 		
-		HrBean hrBean = new AdminDao().getHrDetails(id);
+		HrBean hrBean = new AdminDao().getHrDetails(hrid);
 		
 		request.setAttribute("hrBean", hrBean);
 		request.getRequestDispatcher("EditHr.jsp").forward(request, response);;

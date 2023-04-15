@@ -19,7 +19,7 @@ public class ViewHrController extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 
-		Integer hrid = Integer.valueOf(request.getParameter("id"));
+		String hrid = request.getParameter("id");
 	    
 		HrBean hrBean = new AdminDao().getHrInfo(hrid);
 		

@@ -19,7 +19,7 @@ import com.dao.AdminDao;
 @WebServlet("/SearchController")
 public class SearchController extends HttpServlet {
 	
-	
+	  
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String hrname = request.getParameter("hrname");

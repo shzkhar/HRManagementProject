@@ -7,11 +7,13 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
+<body align="center">
+<h2>List Of Hr</h2>
     <% ArrayList<HrBean> hrBeanAL = (ArrayList<HrBean>) request.getAttribute("hrBeanAL"); %>
     
-     <a href="Search.jsp">Search</a>  <br><br>
-    <table border ="1">
+     <a href="Search.jsp">Search</a>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+     <a href="AdminDashBoard.jsp">AdminDashBoard</a><br><br>
+    <table align="center" border ="1">
          <tr>
              <th>HrId</th>
              <th>HrName</th>

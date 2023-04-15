@@ -106,9 +106,19 @@ public class HrRegistrationController extends HttpServlet {
 		 }
 		 else {
 			AdminDao adminDao = new AdminDao();
-			adminDao.addHr(hrname,hremail,hrpassword,hrmobno);
+			String check = adminDao.addHr(hrname,hremail,hrpassword,hrmobno);
 			
-		    rd=request.getRequestDispatcher("AdminDashBoard.jsp");
+		   if(check.equals("email")){
+				request.setAttribute("error","This Email is Already exist" );
+				rd=request.getRequestDispatcher("AddHr.jsp");
+			}
+			else if(check.equals("mobno")){
+				request.setAttribute("error","This MobileNo is Already exist" );
+				rd=request.getRequestDispatcher("AddHr.jsp");
+			}
+			else {
+				 rd=request.getRequestDispatcher("AdminDashBoard.jsp");
+			}
 			}
 			
 			rd.forward(request, response);

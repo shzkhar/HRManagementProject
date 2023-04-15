@@ -36,28 +36,86 @@ public class AdminDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return adminBean;
 	}
 
-	public void addHr(String hrname, String hremail, String hrpassword, String hrmobno) {
-		
+	public String checkDuplicate(String hremail, String hrmobno)
+	{
+		String check = null;
 		Connection con = DbConnection.getConnection();
-		
+	
 		try {
-			PreparedStatement ps = con.prepareStatement("insert into Hr values(?,?,?,?)");
+			PreparedStatement ps1 = con.prepareStatement("select * from Hr where HrEmail=? ");
+			ps1.setString(1,hremail);
 			
-			ps.setString(1, hrname);
-			ps.setString(2,hremail);
-			ps.setString(3, hrpassword);
-			ps.setString(4, hrmobno);
-			
-			int rowaffected = ps.executeUpdate();
-		
+			ResultSet rs1 = ps1.executeQuery();
+			if(rs1.isBeforeFirst())
+			{
+				check = "email";
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		try {
+			PreparedStatement ps1 = con.prepareStatement("select * from Hr where HrMobno=? ");
+			ps1.setString(1,hrmobno);
+			
+			ResultSet rs1 = ps1.executeQuery();
+			if(rs1.isBeforeFirst())
+			{
+				check = "mobno";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return check;
+	}
 	
+	public String addHr(String hrname, String hremail, String hrpassword, String hrmobno) {
+		String check = checkDuplicate(hremail,hrmobno);
+		int rowaffected = 0;
+		Connection con = DbConnection.getConnection();
+		
+		if(check==null)
+		{
+			try {
+				PreparedStatement ps = con.prepareStatement("insert into Hr values(?,?,?,?)");
+				
+				ps.setString(1, hrname);
+				ps.setString(2,hremail);
+				ps.setString(3, hrpassword);
+				ps.setString(4, hrmobno);
+				
+				 rowaffected = ps.executeUpdate();
+				check=String.valueOf(rowaffected);
+			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}	
+		else if(check.equals("email"))
+		{
+			check="email";
+		}
+		else if(check.equals("mobno"))
+		{
+			check="mobno";
+		}
+		
+	return check;
 	}
 
 	public ArrayList<HrBean> getAllHr()
@@ -105,13 +163,13 @@ public class AdminDao {
 
 
 
-	public HrBean getHrDetails(String id) {
+	public HrBean getHrDetails(String hrid) {
 		HrBean hrBean = new HrBean();
 		Connection con = DbConnection.getConnection();
 		
 		try {
-			PreparedStatement ps = con.prepareStatement("select * from Hr");
-			
+			PreparedStatement ps = con.prepareStatement("select * from Hr where HrId=?");
+			ps.setInt(1, Integer.valueOf(hrid));
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next())
@@ -150,12 +208,13 @@ public class AdminDao {
 		
 	}
 
-	public HrBean getHrInfo(Integer hrid) {
+	public HrBean getHrInfo(String hrid) {
 		HrBean hrBean = null;
 		Connection con = DbConnection.getConnection();
 		try {
-			PreparedStatement ps = con.prepareStatement("select * from Hr");
+			PreparedStatement ps = con.prepareStatement("select * from Hr where HrId=?");
 			
+			ps.setInt(1, Integer.valueOf(hrid));
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next())

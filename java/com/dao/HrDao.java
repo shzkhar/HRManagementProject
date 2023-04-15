@@ -37,5 +37,32 @@ public class HrDao {
 		return hrBean;
 	}
 
+	public int addResource(String name, String email, String mobno, String gender, String experience, String url,String qualification)
+	{
+		int rowafffected=0;
+		Connection con = DbConnection.getConnection();
+		
+		try {
+			PreparedStatement ps = con.prepareStatement("insert into Resource values(Name=?, Email=?,Gender=?, Experience=?,Resumeurl=?,Qualification=?)");
+		    
+			ps.setString(1, name);
+			ps.setString(2, email);
+			ps.setString(3, mobno);
+			ps.setString(4, gender);
+			ps.setString(5, experience);
+			ps.setString(6, url);
+			ps.setString(7, qualification);
+			
+			rowafffected = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rowafffected;
+		
+	}
+
+	
+
 	
 }
