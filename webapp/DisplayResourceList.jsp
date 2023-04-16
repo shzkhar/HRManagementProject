@@ -22,6 +22,7 @@
              <th>ResumeURL</th>
              <th>Qualification</th>
              <th>Action</th>
+             
           </tr>
           <%
               for(ResourceBean rb:resourceBeanAL) {

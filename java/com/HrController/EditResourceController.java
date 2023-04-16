@@ -47,9 +47,12 @@ public class EditResourceController extends HttpServlet {
 		resourceBean.setResumeurl(url);
 		resourceBean.setQualification(qualification);
 		
-		new HrDao().updateResource(resourceBean);
+		 new HrDao().updateResource(resourceBean);
 		
-		response.sendRedirect("ResourceListController");
+		
+			response.sendRedirect("ResourceListController");
+		
+		
 		
 		}
 

@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>EditResource Page</title>
+
 </head>
 <body>
+
          <form action="EditResourceController" method="post">
              
            <input type="hidden" name="id" value="${param.id}" /> 

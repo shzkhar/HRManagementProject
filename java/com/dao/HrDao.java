@@ -133,6 +133,7 @@ public class HrDao {
 	}
 
 	public void updateResource(ResourceBean resourceBean) {
+		
 		Connection con = DbConnection.getConnection();
 		try {
 			PreparedStatement ps = con.prepareStatement("update Resource set Name=?, Email=?, Mobno=?, Gender=?, Experience=?, Resumeurl=?, Qualification=? where id=?");

@@ -24,11 +24,11 @@ public class AddNewResourceController extends HttpServlet {
 		String email = request.getParameter("email");
 		String mobno = request.getParameter("mobno");
 		String gender = request.getParameter("gender");
-		String[] language = request.getParameterValues("language");
+		String[] language = request.getParameterValues("language"); 
 		String[] database = request.getParameterValues("database");
 		String[] technology = request.getParameterValues("technology");
 		String experience = request.getParameter("experience");
-		String url = request.getParameter("resumeurl");
+		String resumeurl = request.getParameter("resumeurl");
 		String qualification = request.getParameter("qualification");
 		
 		boolean iserror = false;
@@ -89,11 +89,19 @@ public class AddNewResourceController extends HttpServlet {
 		}
 		 
 		//Validation for Gender
-		 if(gender.matches("M")==false || gender.matches("M")==false)
+		 if(Validation.isEmpty(gender))
+		 {
+			 iserror=true;
+			 request.setAttribute("gender", "Gender Can't Be Empty");
+		 }
+		 else if(gender.matches("M")==false || gender.matches("M")==false)
 		 {
 			 iserror=true;
 			 request.setAttribute("gender", "Select Gender");
 		 }
+		 else {
+			request.setAttribute("gendervalue", gender);
+		}
 		 
 		 //Validation For Experience
 		 if(experience.matches("[0-9]+")==false)
@@ -106,44 +114,57 @@ public class AddNewResourceController extends HttpServlet {
 		}
 		 
 		 //Validation For URL
-		 if(Validation.isEmpty(url))
+		 if(Validation.isEmpty(resumeurl))
 		 {
 			iserror=true;
-			request.setAttribute("url", "URl Can't Be Empty");
+			request.setAttribute("resumeurl", "URL Can't Be Empty");
 		 }
 		 else {
-			request.setAttribute("urlvalue", url);
+			request.setAttribute("resumeurlvalue", resumeurl);
 		}
 		 
 		 //Validation For Qualification
-		 if(Validation.isEmailAlpha(qualification))
+		 if(Validation.isEmpty(qualification))
 		 {
 			 iserror=true;
-			 request.setAttribute("qualification", qualification);
+			 request.setAttribute("qualification", "Qualification Can't be Empty");
 		 }
 		 else {
 			request.setAttribute("qualificationvalue", qualification);
 		}
 		 
+		
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
 		 RequestDispatcher rd = null;
-		if(iserror==false)
+		 System.out.println(iserror);
+		if(iserror)
 		{
 			rd = request.getRequestDispatcher("AddNewResource.jsp");
 		}
 		else {
 			HrDao hrDao = new HrDao();
 			
-		   int rowaffected = hrDao.addResource(name,email,mobno,gender,experience,url,qualification);
-		    if(rowaffected>0)
+		   int rowaffectedR = hrDao.addResource(name,email,mobno,gender,experience,resumeurl,qualification);
+		    if(rowaffectedR>0)
 		    {
 		    	rd = request.getRequestDispatcher("HrDashBoard.jsp");
 		    }
 		    else {
 		    	rd = request.getRequestDispatcher("AddNewResource.jsp");
 			}
+		    
 		}
 		rd.forward(request, responce);
 	}
 
+	
+	
 	
 }
