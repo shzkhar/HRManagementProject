@@ -22,6 +22,7 @@
              <th>ResumeURL</th>
              <th>Qualification</th>
              <th>Action</th>
+            
              
           </tr>
           <%
@@ -37,6 +38,8 @@
                  <td><%=rb.getResumeurl() %></td>
                  <td><%=rb.getQualification() %></td>
                  <td>
+                 <a href="ViewLanguageController?id=<%=rb.getId() %>">Language</a>
+                 |
                   <a href="EditResourceController?id=<%=rb.getId() %>">Update</a>
                   |
                   <a href="ViewResourceController?id=<%=rb.getId() %>">View</a>

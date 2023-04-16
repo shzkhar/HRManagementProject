@@ -93,12 +93,7 @@ public class AddNewResourceController extends HttpServlet {
 		 if(Validation.isEmpty(gender))
 		 {
 			 iserror=true;
-			 request.setAttribute("gender", "Gender Can't Be Empty");
-		 }
-		 else if(gender.matches("M")==false || gender.matches("M")==false)
-		 {
-			 iserror=true;
-			 request.setAttribute("gender", "Select Gender");
+			 request.setAttribute("gender", "Please Select Gender");
 		 }
 		 else {
 			request.setAttribute("gendervalue", gender);
@@ -164,8 +159,8 @@ public class AddNewResourceController extends HttpServlet {
 		  System.out.println(id);
 		  
 		  hrDao.addLanguage(id,language);
-		   
-		   
+		  hrDao.addDatabase(id,database);
+		  hrDao.addTechnology(id,technology);
 		    
 		   rd = request.getRequestDispatcher("HrDashBoard.jsp");
 		    

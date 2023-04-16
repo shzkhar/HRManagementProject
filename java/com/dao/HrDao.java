@@ -279,6 +279,103 @@ public class HrDao {
 		
 	}
 
+	public void addDatabase(int id, String[] database) {
+		Connection con = DbConnection.getConnection();
+		
+		for(int i=0;i<database.length;i++)
+		{
+			String db = database[i];
+			
+			PreparedStatement ps;
+			try {
+				ps = con.prepareStatement("select DBId from DBName where DbName = ?");
+				
+				ps.setString(1, db);
+				 
+				ResultSet rs = ps.executeQuery();
+				int tempDbid = 0;
+				if(rs.next())
+				{
+					tempDbid = rs.getInt("DBId");
+					
+				}
+				
+				ps = con.prepareStatement("insert into Res_DB values(?,?)");
+				
+				ps.setInt(1, tempDbid);
+				ps.setInt(2, id);
+				
+				ps.executeUpdate();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+	}
+
+	public void addTechnology(int id, String[] technology) {
+		Connection con = DbConnection.getConnection();
+		
+		
+		for(int i=0;i<technology.length;i++)
+		{
+			String tech = technology[i];
+			
+			PreparedStatement ps;
+			try {
+				ps = con.prepareStatement("select TechId from Technology where TechName = ?");
+				
+				ps.setString(1, tech);
+				 
+				ResultSet rs = ps.executeQuery();
+				int tempTechid = 0;
+				if(rs.next())
+				{
+					tempTechid = rs.getInt("TechId");
+					
+				}
+				
+				ps = con.prepareStatement("insert into Res_Tech values(?,?)");
+				
+				ps.setInt(1, tempTechid);
+				ps.setInt(2, id);
+				
+				ps.executeUpdate();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+	}
+
+	public ArrayList viewLanguage(String id) {
+		ArrayList languageAL = new ArrayList<>();
+		
+		Connection con = DbConnection.getConnection();
+		
+		try {
+			PreparedStatement ps = con.prepareStatement("select LngName from Language where LngId in (select LngId from Res_Lng where Id in(select Id from Resource where Id=?))");
+		    
+			ps.setInt(1, Integer.valueOf(id));
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next())
+			{
+				 languageAL.add(rs.getString("LngName"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return languageAL;
+	}
+
 	
 
 	

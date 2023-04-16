@@ -54,10 +54,10 @@ String qualification = (String)request.getAttribute("qualification");
                              
            <label for="database">Select Database :-</label>
                              <select name="database" id="database" multiple="multiple" required >
-                                <option value="Oracle DB">Oracle DB</option>
+                                <option value="OracleDB">OracleDB</option>
                                 <option value="MSSQL">MSSQL</option>
-                                <option value="MangoDB">MangoDB</option>
-                                <option value="MYSQL">MYSQL</option>
+                                <option value="MANGODB">MangoDB</option>
+                                <option value="MySQL">MYSQL</option>
                   
                              </select>  
                <span class="color"><%=database==null?"":database %></span>               
@@ -65,12 +65,12 @@ String qualification = (String)request.getAttribute("qualification");
                              
            <label for="technology">Select Technology :-</label>
                              <select name="technology" id="technology" multiple="multiple"  required>
-                                <option value="C">C</option>
-                                <option value="C#">C#</option>
-                                <option value="Java">Java</option>
-                                <option value="PHP">PHP</option>
-                                <option value="Python">Python</option>
-                                <option value="Ruby">Ruby</option> 
+                                <option value="JSP">JSP</option>
+                                <option value="Servlet">Servlet</option>
+                                <option value="Hadoop">Hadoop</option>
+                                <option value="BigData">BigData</option>
+                                <option value="AWS">AWS</option>
+                               
                              </select>  
                <span class="color"><%=technology==null?"":technology %></span>               
                              <br><br>
