@@ -1,6 +1,8 @@
 package com.HrController;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +28,7 @@ public class AddNewResourceController extends HttpServlet {
 		String[] database = request.getParameterValues("database");
 		String[] technology = request.getParameterValues("technology");
 		String experience = request.getParameter("experience");
-		String url = request.getParameter("url");
+		String url = request.getParameter("resumeurl");
 		String qualification = request.getParameter("qualification");
 		
 		boolean iserror = false;
@@ -99,16 +101,48 @@ public class AddNewResourceController extends HttpServlet {
 			 iserror=true;
 			 request.setAttribute("experience", "Enter Valid Experience");
 		 }
-		
-		int rowafffected =new HrDao().addResource(name,email,mobno,gender,experience,url,qualification);
-		
-		if(rowafffected>0)
+		 else {
+			 request.setAttribute("experiencevalue", experience);
+		}
+		 
+		 //Validation For URL
+		 if(Validation.isEmpty(url))
+		 {
+			iserror=true;
+			request.setAttribute("url", "URl Can't Be Empty");
+		 }
+		 else {
+			request.setAttribute("urlvalue", url);
+		}
+		 
+		 //Validation For Qualification
+		 if(Validation.isEmailAlpha(qualification))
+		 {
+			 iserror=true;
+			 request.setAttribute("qualification", qualification);
+		 }
+		 else {
+			request.setAttribute("qualificationvalue", qualification);
+		}
+		 
+		 RequestDispatcher rd = null;
+		if(iserror==false)
 		{
-			request.getRequestDispatcher("HrDashBoard.jsp");
+			rd = request.getRequestDispatcher("AddNewResource.jsp");
 		}
 		else {
-			request.getRequestDispatcher("AddNewResource.jsp");
+			HrDao hrDao = new HrDao();
+			
+		   int rowaffected = hrDao.addResource(name,email,mobno,gender,experience,url,qualification);
+		    if(rowaffected>0)
+		    {
+		    	rd = request.getRequestDispatcher("HrDashBoard.jsp");
+		    }
+		    else {
+		    	rd = request.getRequestDispatcher("AddNewResource.jsp");
+			}
 		}
+		rd.forward(request, responce);
 	}
 
 	

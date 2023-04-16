@@ -15,7 +15,7 @@
           Enter Gender :- <input type="radio" name="gender" value="M"/>Male 
                           <input type="radio" name="gender" value="F"/>FeMale <br><br>
           <label for="language">Select Language :-</label>
-                             <select name="language" id="language" multiple="multiple" required>
+                             <select name="language" id="language" multiple="multiple"  required>
                                 <option value="C">C</option>
                                 <option value="C#">C#</option>
                                 <option value="Java">Java</option>

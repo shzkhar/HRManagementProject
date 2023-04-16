@@ -76,4 +76,6 @@ public class ResourceBean {
 		this.qualification = qualification;
 	}
 
+	
+
 }

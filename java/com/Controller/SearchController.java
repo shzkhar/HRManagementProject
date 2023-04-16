@@ -27,9 +27,9 @@ public class SearchController extends HttpServlet {
 		ArrayList<HrBean> hrBeanAL = new AdminDao().search(hrname);
 		
 		RequestDispatcher rd;
-		if(hrBeanAL==null)
+		if(hrBeanAL.isEmpty())
 		{
-			request.setAttribute("msg", "Data Not Found");
+			request.setAttribute("msg", "Sorry Data Not Found");
 			rd = request.getRequestDispatcher("Search.jsp");
 		}
 		else {

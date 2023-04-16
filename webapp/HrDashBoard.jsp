@@ -8,7 +8,7 @@
 </head>
 <body>
     <a href="AddNewResource.jsp">AddNewResource</a><br><br>
-    <a href="">ViewResource</a><br><br>
+    <a href="ResourceListController">ViewResource</a><br><br>
     <a href="">SearchResources</a>
 </body>
 </html>

@@ -1,3 +1,4 @@
+<%@page import="com.bean.ResourceBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -7,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body align="center">
+
 
     <form action="EditHrController" method="post">
     
