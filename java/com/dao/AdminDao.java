@@ -197,7 +197,7 @@ public class AdminDao {
 			ps.setString(1, (hrBean.getHrname()));
 			ps.setString(2, (hrBean.getHremail()));
 			ps.setString(3, (hrBean.getHrpassword()));
-			ps.setString(4, (hrBean.getHrpassword()));
+			ps.setString(4, (hrBean.getHrmobno()));
 			ps.setInt(5, (hrBean.getId()));
 			
 			ps.executeUpdate();

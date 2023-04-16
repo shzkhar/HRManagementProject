@@ -31,7 +31,7 @@
         Enter Hr Mobno :-<input type="text" name="hrmobno" value="${hrmobnovalue}" />
           <span class="color"><%=hrmobno==null?"":hrmobno %></span><br><br>
         
-          <input type="submit" value="Login"/>
+          <input type="submit" value="SUBMIT"/>
      </form>
          
 </body>

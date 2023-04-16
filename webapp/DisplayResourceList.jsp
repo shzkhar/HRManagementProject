@@ -9,7 +9,9 @@
 </head>
 <body align="center">
      <%ArrayList<ResourceBean> resourceBeanAL =(ArrayList<ResourceBean>) request.getAttribute("resourceBeanAL"); %>
-     <h2>List Of All Resource</h2>
+    
+     <h1>List Of All Resource</h1><br><br>
+      <a href="HrDashBoard.jsp">HrDashboard</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <a href="SearchResource.jsp">Search</a><br><br>
      <table border="1" align="center">
           <tr>
@@ -35,7 +37,7 @@
                <td><%=rb.getMobno() %></td>
                 <td><%=rb.getGender() %></td>
                  <td><%=rb.getExperience() %></td>
-                 <td><%=rb.getResumeurl() %></td>
+                 <td><a href="<%=rb.getResumeurl() %>"><%=rb.getResumeurl() %></a></td>
                  <td><%=rb.getQualification() %></td>
                  <td>
                  <a href="ViewLanguageController?id=<%=rb.getId() %>">Language</a>

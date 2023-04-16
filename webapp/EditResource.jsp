@@ -8,7 +8,7 @@
 
 </head>
 <body>
-
+  
          <form action="EditResourceController" method="post">
              
            <input type="hidden" name="id" value="${param.id}" /> 

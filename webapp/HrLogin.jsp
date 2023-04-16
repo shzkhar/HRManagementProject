@@ -16,7 +16,7 @@ color:red;
 <%String error =(String) request.getAttribute("error"); %>
 
 <span class="color"><%=error==null?"":error %></span> <br><br>
-
+      <h1>Hr Login</h1><br><br>
       <form action="HrAuthenticationController" method="post">
           Enter Email :- <input type="text" name="hremail" placeholder="Enter Email"/><br><br>
           Enter Password :- <input type="password" name="hrpassword" placeholder="Enter Password"/><br><br>

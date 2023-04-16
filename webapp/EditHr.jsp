@@ -8,8 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body align="center">
-
-
+ <a href="HrListController">Back</a>
+    <h2>Edit Hr Details</h2>
     <form action="EditHrController" method="post">
     
     <input type="hidden" name="hrid" value="${param.id}"/> 

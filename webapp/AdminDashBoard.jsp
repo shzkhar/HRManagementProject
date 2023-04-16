@@ -14,7 +14,7 @@
       <pre>                                                             <a href="LogoutController"><big>Logout</big></a></pre>
        <a href="AddHr.jsp">Add Hr</a><br><br>
        <a href="HrListController">Hr List</a><br><br>
-       <a href="">Resource List</a><br><br>
+       <a href="ResourceListController">Resource List</a><br><br>
       
 </body>
 </html>

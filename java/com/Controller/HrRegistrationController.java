@@ -117,7 +117,7 @@ public class HrRegistrationController extends HttpServlet {
 				rd=request.getRequestDispatcher("AddHr.jsp");
 			}
 			else {
-				 rd=request.getRequestDispatcher("AdminDashBoard.jsp");
+				 rd=request.getRequestDispatcher("HrAddesSuccessfully.jsp");
 			}
 			}
 			
