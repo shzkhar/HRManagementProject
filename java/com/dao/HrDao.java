@@ -355,7 +355,7 @@ public class HrDao {
 	}
 
 	public ArrayList viewLanguage(String id) {
-		ArrayList languageAL = new ArrayList<>();
+		ArrayList languageAL = new ArrayList();
 		
 		Connection con = DbConnection.getConnection();
 		
@@ -374,6 +374,51 @@ public class HrDao {
 			e.printStackTrace();
 		}
 		return languageAL;
+	}
+
+	public ArrayList viewDatabase(String id) {
+         
+		ArrayList databaseAL = new ArrayList();
+		
+		Connection con = DbConnection.getConnection();
+		
+		try {
+			PreparedStatement ps = con.prepareStatement("select DbName from DBName where DBId in (select DBId from Res_DB where Id in(select Id from Resource where Id=?))");
+		    
+			ps.setInt(1, Integer.valueOf(id));
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next())
+			{
+				databaseAL.add(rs.getString("DbName"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return databaseAL;
+	}
+
+	public ArrayList viewTechnology(String id) {
+ArrayList technologyAL = new ArrayList();
+		
+		Connection con = DbConnection.getConnection();
+		
+		try {
+			PreparedStatement ps = con.prepareStatement("select TechName from Technology where TechId in (select TechId from Res_Tech where Id in(select Id from Resource where Id=?))");
+		    
+			ps.setInt(1, Integer.valueOf(id));
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next())
+			{
+				technologyAL.add(rs.getString("TechName"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return technologyAL;
 	}
 
 	

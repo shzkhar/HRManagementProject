@@ -40,6 +40,10 @@
                  <td>
                  <a href="ViewLanguageController?id=<%=rb.getId() %>">Language</a>
                  |
+                  <a href="ViewDatabaseController?id=<%=rb.getId() %>">Database</a>
+                  |
+                   <a href="ViewTechnologyController?id=<%=rb.getId() %>">Technology</a>
+                  |
                   <a href="EditResourceController?id=<%=rb.getId() %>">Update</a>
                   |
                   <a href="ViewResourceController?id=<%=rb.getId() %>">View</a>

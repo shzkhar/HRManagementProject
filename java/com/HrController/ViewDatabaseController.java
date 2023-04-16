@@ -12,21 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.dao.HrDao;
 
 /**
- * Servlet implementation class ViewLanguageController
+ * Servlet implementation class ViewDatabaseController
  */
-@WebServlet("/ViewLanguageController")
-public class ViewLanguageController extends HttpServlet {
+@WebServlet("/ViewDatabaseController")
+public class ViewDatabaseController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		
-		ArrayList languageAL = new HrDao().viewLanguage(id);
+        ArrayList databaseAL = new HrDao().viewDatabase(id);
 		
-		request.setAttribute("languageAL", languageAL);
-		request.setAttribute("check", "Language");
+		request.setAttribute("databaseAL", databaseAL);
+		request.setAttribute("check", "Database");
 		request.getRequestDispatcher("LDTViewPage.jsp").forward(request, response);
 	}
-
-	
 
 }
