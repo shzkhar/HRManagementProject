@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bean.ResourceBean;
 import com.dao.HrDao;
 import com.filter.Validation;
 
@@ -143,22 +144,32 @@ public class AddNewResourceController extends HttpServlet {
 		 
 		 
 		 RequestDispatcher rd = null;
-		 System.out.println(iserror);
+		
 		if(iserror)
 		{
 			rd = request.getRequestDispatcher("AddNewResource.jsp");
 		}
 		else {
 			HrDao hrDao = new HrDao();
+//			ResourceBean resourceBean = new ResourceBean();
+//			resourceBean.setName(name);
+//			resourceBean.setEmail(email);
+//			resourceBean.setMobno(mobno);
+//			resourceBean.setGender(gender);
+//			resourceBean.setExperience(experience);
+//			resourceBean.setResumeurl(resumeurl);
+//			resourceBean.setQualification(qualification);
 			
-		   int rowaffectedR = hrDao.addResource(name,email,mobno,gender,experience,resumeurl,qualification);
-		    if(rowaffectedR>0)
-		    {
-		    	rd = request.getRequestDispatcher("HrDashBoard.jsp");
-		    }
-		    else {
-		    	rd = request.getRequestDispatcher("AddNewResource.jsp");
-			}
+		  int id = hrDao.addResource(name,email,mobno,gender,experience,resumeurl,qualification);
+		  System.out.println(id);
+		  
+		  hrDao.addLanguage(id,language);
+		   
+		   
+		    
+		   rd = request.getRequestDispatcher("HrDashBoard.jsp");
+		    
+		   
 		    
 		}
 		rd.forward(request, responce);

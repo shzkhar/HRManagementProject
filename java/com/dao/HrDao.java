@@ -40,31 +40,31 @@ public class HrDao {
 		return hrBean;
 	}
 
-	public int addResource(String name, String email, String mobno, String gender, String experience, String url,String qualification)
-	{
-		int ra = 0;
-		
-		Connection con = DbConnection.getConnection();
-		try {
-			PreparedStatement ps = con.prepareStatement("insert into Resource values(?,?,?,?,?,?,?)");
-		    
-			ps.setString(1, name);
-			ps.setString(2, email);
-			ps.setString(3, mobno);
-			ps.setString(4, gender);
-			ps.setString(5, experience);
-			ps.setString(6, url);
-			ps.setString(7, qualification);
-			
-			ra = ps.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return ra;
-		
-	}
+//	public res addResource(ResourceBean resourceBean)
+//	{
+//		int id =0;
+//		
+//		Connection con = DbConnection.getConnection();
+//		try {
+//			PreparedStatement ps = con.prepareStatement("insert into Resource values(?,?,?,?,?,?,?)");
+//		    
+//			ps.setString(1, resourceBean.getName());
+//			ps.setString(2, resourceBean.getEmail());
+//			ps.setString(3, resourceBean.getMobno());
+//			ps.setString(4, resourceBean.getGender());
+//			ps.setString(5, resourceBean.getExperience());
+//			ps.setString(6, resourceBean.getResumeurl());
+//			ps.setString(7, resourceBean.getQualification());
+//			
+//			 ps.executeUpdate();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		return resourceBean;
+//		
+//	}
 
 	public ArrayList<ResourceBean> getAllResources() {
 		
@@ -202,6 +202,84 @@ public class HrDao {
 		
 		return resourceBeanAL;
 	}
+
+	public void addLanguage(int id, String[] language) {
+		
+		Connection con = DbConnection.getConnection();
+		int lngid[] = new int[language.length];
+		
+		for(int i=0;i<language.length;i++)
+		{
+			String lng = language[i];
+			
+			PreparedStatement ps;
+			try {
+				ps = con.prepareStatement("select LngId from Language where LngName = ?");
+				
+				ps.setString(1, lng);
+				 
+				ResultSet rs = ps.executeQuery();
+				int tempid = 0;
+				if(rs.next())
+				{
+					tempid = rs.getInt("LngId");
+					
+				}
+				
+				ps = con.prepareStatement("insert into Res_Lng values(?,?)");
+				
+				ps.setInt(1, tempid);
+				ps.setInt(2, id);
+				
+				ps.executeUpdate();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+	}
+
+	public int addResource(String name, String email, String mobno, String gender, String experience, String resumeurl,String qualification) {
+		//ResourceBean resourceBean = null;
+		int id =0;
+		
+		Connection con = DbConnection.getConnection();
+		try {
+			PreparedStatement ps;
+			ps = con.prepareStatement("insert into Resource values(?,?,?,?,?,?,?)");
+		    
+			ps.setString(1, name);
+			ps.setString(2, email);
+			ps.setString(3, mobno);
+			ps.setString(4, gender);
+			ps.setString(5, experience);
+			ps.setString(6, resumeurl);
+			ps.setString(7, qualification);
+			
+		    ps.executeUpdate();
+		    
+		    ps=con.prepareStatement("select id from Resource where email=?");
+		    ps.setString(1, email);
+		    
+		    ResultSet rs = ps.executeQuery();
+		    
+		    if(rs.next())
+		    {
+		    	id = rs.getInt("Id");
+		    }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return id;
+		
+	}
+
+	
 
 	
 		
