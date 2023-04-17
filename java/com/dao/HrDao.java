@@ -158,8 +158,21 @@ public class HrDao {
 	public void deleteResource(String id) {
 		Connection con = DbConnection.getConnection();
 		try {
-			PreparedStatement ps = con.prepareStatement("delete from Resource where id=?");
+			PreparedStatement ps;
 			
+			ps = con.prepareStatement("delete from Res_DB where id = ?");
+			ps.setInt(1, Integer.valueOf(id));
+			ps.executeUpdate();
+			
+			ps = con.prepareStatement("delete from Res_Lng where id = ?");
+			ps.setInt(1, Integer.valueOf(id));
+			ps.executeUpdate();
+			
+			ps = con.prepareStatement("delete from Res_Tech where id = ?");
+			ps.setInt(1, Integer.valueOf(id));
+			ps.executeUpdate();
+			
+			ps = con.prepareStatement("delete from Resource where id=?");
 			ps.setInt(1, Integer.valueOf(id));
 			ps.executeUpdate();
 		} catch (SQLException e) {

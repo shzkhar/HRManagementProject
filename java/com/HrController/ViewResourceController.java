@@ -1,6 +1,8 @@
 package com.HrController;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +27,13 @@ public class ViewResourceController extends HttpServlet {
 		
 		ResourceBean resourceBean =new HrDao().getresourceInfo(id);
 		
+		ArrayList languageAL = new HrDao().viewLanguage(id);
+		ArrayList databaseAL = new HrDao().viewDatabase(id);
+		ArrayList technologyAL =  new HrDao().viewTechnology(id);
+		
+		
 		request.setAttribute("resourceBean", resourceBean);
+		
 		request.getRequestDispatcher("ViewResource.jsp").forward(request, response);
 		}
 

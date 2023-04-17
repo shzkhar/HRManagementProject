@@ -42,7 +42,7 @@
        
         <% if(check.equals("Technology")) {%>
        
-       <h1>  Database Details  </h1> 
+       <h1>  Technology Details  </h1> 
             <%Iterator e = technologyAL.iterator();
               while(e.hasNext())
               { %>

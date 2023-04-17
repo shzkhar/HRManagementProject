@@ -35,6 +35,9 @@ public class EditResourceController extends HttpServlet {
 		String experience = request.getParameter("experience");
 		String url = request.getParameter("resumeurl");
 		String qualification = request.getParameter("qualification");
+		String[] language = request.getParameterValues("language");
+		String[] database = request.getParameterValues("database");
+		String[] technology = request.getParameterValues("technology");
 		
 		ResourceBean resourceBean = new ResourceBean();
 		
@@ -48,8 +51,7 @@ public class EditResourceController extends HttpServlet {
 		resourceBean.setQualification(qualification);
 		
 		 new HrDao().updateResource(resourceBean);
-		
-		
+		 new HrDao().addLanguage(0, language);
 			response.sendRedirect("ResourceListController");
 		
 		

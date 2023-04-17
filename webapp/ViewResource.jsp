@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+  
 <a href="ResourceListController">Back</a>
       <pre><h2>
          ID            :- ${resourceBean.id }
@@ -18,5 +21,6 @@
          ResumeURL     :- ${resourceBean.resumeurl };
          Qualification :- ${resourceBean.qualification };
       </h2></pre>
+
 </body>
 </html>
